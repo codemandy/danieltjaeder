@@ -59,9 +59,10 @@ export default function Home() {
 
           <div className="mb-16">
             <AudioPlayer
-              title="Nocturne in F Minor"
+              title="DING"
               description="From the album 'Midnight Compositions' (2023)"
               duration="4:32"
+              audioSrc="/audio/test.mp3"
             />
           </div>
 
