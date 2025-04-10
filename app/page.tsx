@@ -11,8 +11,8 @@ import { useEffect } from 'react'
 export default function Home() {
   useEffect(() => {
     // Check for hash in URL
-    if (window.location.hash === '#contact') {
-      const contactSection = document.getElementById('contact')
+    if (window.location.hash === '#contact-section') {
+      const contactSection = document.getElementById('contact-section')
       if (contactSection) {
         setTimeout(() => {
           contactSection.scrollIntoView({ behavior: 'smooth' })
@@ -25,12 +25,12 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute inset-0 bg-black/10 z-10" />
           <img
-            src="/placeholder.svg?height=1080&width=1920"
+            src="/media/bgbg-2.png"
             alt="Daniel Tjäder performing"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover filter blur-xl"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
