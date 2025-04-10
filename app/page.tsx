@@ -36,7 +36,7 @@ export default function Home() {
         <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6">Daniel Tjäder</h1>
           <p className="text-xl md:text-2xl font-light text-white/90 max-w-2xl mx-auto mb-8">
-            Composer · Pianist · Producer
+            Composer · Musician · Sound Designer
           </p>
           <Button
             variant="outline"
@@ -54,7 +54,7 @@ export default function Home() {
       {/* Featured Music Section */}
       <section className="py-24 bg-white" id="music">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Featured Work</h2>
+          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Featured Compositions</h2>
           <div className="w-20 h-px bg-gray-200 mb-12"></div>
 
           <div className="mb-16">
@@ -84,7 +84,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <img
-                src="/placeholder.svg?height=600&width=600"
+                src="/media/bg_04.jpg"
                 alt="Daniel Tjäder portrait"
                 className="rounded-lg shadow-lg w-full"
               />
@@ -110,10 +110,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Upcoming Performances */}
-      <section className="py-24 bg-white" id="performances">
+      {/* Upcoming Work */}
+      <section className="py-24 bg-white" id="work">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Upcoming Performances</h2>
+          <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Upcoming Work</h2>
           <div className="w-20 h-px bg-gray-200 mb-12"></div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -136,26 +136,26 @@ export default function Home() {
                 location: "London, UK",
                 title: "Summer Night Concerto",
               },
-            ].map((performance, index) => (
+            ].map((work, index) => (
               <div
                 key={index}
                 className="border border-gray-100 rounded-lg p-6 hover:shadow-md transition-shadow duration-300"
               >
-                <div className="text-sm text-gray-500 mb-2">{performance.date}</div>
-                <h3 className="text-xl font-medium text-gray-900 mb-1">{performance.title}</h3>
-                <div className="text-gray-700 mb-4">{performance.venue}</div>
-                <div className="text-gray-500 mb-6">{performance.location}</div>
+                <div className="text-sm text-gray-500 mb-2">{work.date}</div>
+                <h3 className="text-xl font-medium text-gray-900 mb-1">{work.title}</h3>
+                <div className="text-gray-700 mb-4">{work.venue}</div>
+                <div className="text-gray-500 mb-6">{work.location}</div>
                 <Button variant="outline" size="sm" className="w-full">
-                  Get Tickets
+                  Read more
                 </Button>
               </div>
             ))}
           </div>
 
           <div className="mt-12 text-center">
-            <Link href="/performances">
+            <Link href="/work">
               <Button variant="outline" className="group">
-                View All Performances
+                View all
                 <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
