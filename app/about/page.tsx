@@ -9,10 +9,8 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <Navbar />
       
-      <header className="pt-24 pb-16 border-b border-gray-100">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-normal text-gray-900 mb-0">Om mig</h1>
-        </div>
+      <header className="pt-24 pb-16">
+       
       </header>
 
       <main className="py-16 md:py-24">
@@ -21,7 +19,10 @@ export default function AboutPage() {
             <div className="md:col-span-7 space-y-12">
               <section>
                 {aboutParagraphs.map((paragraph, index) => (
-                  <p key={index} className={`text-xl leading-relaxed text-gray-700 ${index === aboutParagraphs.length - 1 ? '' : 'mb-8'}`}>
+                  <p 
+                    key={index} 
+                    className={`text-xl leading-relaxed text-gray-700 ${index === aboutParagraphs.length - 1 ? '' : 'mb-8'}`}
+                  >
                     {paragraph}
                   </p>
                 ))}
@@ -32,9 +33,9 @@ export default function AboutPage() {
               <div className="sticky top-24 space-y-12">
                 <div>
                   <img
-                    src="/media/daniel_01.jpg"
+                    src="/media/about_01.png"
                     alt="Daniel Tjäder portrait"
-                    className="rounded-lg shadow-lg w-full"
+                    className="shadow-lg w-full"
                   />
                 </div>
 

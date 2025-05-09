@@ -12,6 +12,9 @@ export default function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
 
+  const pagesRequiringOpaqueNavbar = ['/about', '/music', '/compositions']; // Add other paths if needed
+  const forceOpaque = pagesRequiringOpaqueNavbar.includes(pathname);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -44,15 +47,17 @@ export default function Navbar() {
     }
   }
 
+  const navShouldBeOpaque = isScrolled || forceOpaque;
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-sm shadow-sm" : "bg-transparent"
+        navShouldBeOpaque ? "bg-white/90 backdrop-blur-sm shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className={`text-xl font-light ${isScrolled ? "text-gray-900" : "text-white"} notranslate`}>
+          <Link href="/" className={`text-xl font-light ${navShouldBeOpaque ? "text-gray-900" : "text-white"} notranslate`}>
             Daniel Tjäder
           </Link>
 
@@ -66,16 +71,16 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={`text-sm ${
-                  isScrolled ? "text-gray-700 hover:text-gray-900" : "text-white/80 hover:text-white"
+                  navShouldBeOpaque ? "text-gray-700 hover:text-gray-900" : "text-white/80 hover:text-white"
                 } transition-colors`}
               >
                 {item.name}
               </Link>
             ))}
             <Button
-              variant={isScrolled ? "default" : "outline"}
+              variant={navShouldBeOpaque ? "default" : "outline"}
               size="sm"
-              className={!isScrolled ? "bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20" : ""}
+              className={!navShouldBeOpaque ? "bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20" : ""}
               onClick={scrollToContact}
             >
               Contact Now
@@ -85,7 +90,7 @@ export default function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className={`md:hidden ${isScrolled ? "text-gray-900" : "text-white"}`}
+            className={`md:hidden ${navShouldBeOpaque ? "text-gray-900" : "text-white"}`}
             onClick={() => setIsMenuOpen(true)}
           >
             <Menu className="h-6 w-6" />
@@ -109,18 +114,34 @@ export default function Navbar() {
               { name: "Home", href: "/" },
               { name: "Music", href: "/music" },
               { name: "About", href: "/about" },
-              { name: "Contact", href: "/contact" },
+              { name: "Contact", href: "/contact" }, // Note: This contact is likely a section, handled by scrollToContact
             ].map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-xl text-gray-900"
-                onClick={() => setIsMenuOpen(false)}
+                className="text-xl text-gray-900" // Mobile menu text is always dark on white bg
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  // If it's a hash link for the homepage, handle scrolling
+                  if (item.href === "/contact" && pathname === "/") {
+                    scrollToContact();
+                  } else if (item.href === "/contact") {
+                     router.push('/#contact');
+                  }
+                  // Regular navigation for other links handled by Link component
+                }}
               >
                 {item.name}
               </Link>
             ))}
-            <Button onClick={scrollToContact}>Contact Now</Button>
+            <Button 
+              onClick={() => {
+                setIsMenuOpen(false);
+                scrollToContact();
+              }}
+            >
+              Contact Now
+            </Button>
           </nav>
         </div>
       )}

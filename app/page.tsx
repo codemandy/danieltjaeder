@@ -22,7 +22,7 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [visibleProjects, setVisibleProjects] = useState(3)
-  const aboutExcerpt = getAboutExcerpt(1)
+  const aboutExcerpt = getAboutExcerpt(3)
 
   const allProjects = [
     {
@@ -74,28 +74,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // GTranslate setup
-    // @ts-ignore
-    window.gtranslateSettings = {
-      "default_language": "sv",
-      "native_language_names": true,
-      "languages": ["sv", "en"],
-      "globe_color": "#000000", // Globe color is always black
-      "wrapper_selector": ".gtranslate_wrapper",
-      "flag_size": 16,
-      "horizontal_position": "right",
-      "vertical_position": "bottom",
-      "globe_size": 16
-    };
-
-    const globeWrapper = document.querySelector('.gtranslate_wrapper');
-
-    // Initial load of the GTranslate script
-    const initialScript = document.createElement('script');
-    initialScript.src = "https://cdn.gtranslate.net/widgets/latest/globe.js";
-    initialScript.defer = true;
-    document.body.appendChild(initialScript);
-
     // Check for hash in URL for contact section scrolling (existing logic)
     if (window.location.hash === '#contact-section') {
       const contactSection = document.getElementById('contact-section');
@@ -105,18 +83,7 @@ export default function Home() {
         }, 100);
       }
     }
-
-    return () => {
-      // Cleanup GTranslate
-      if (globeWrapper) {
-        // @ts-ignore
-        globeWrapper.innerHTML = ''; // Clear the wrapper on unmount
-      }
-      // Remove the dynamically added GTranslate script
-      const gtranslateScripts = document.querySelectorAll('script[src="https://cdn.gtranslate.net/widgets/latest/globe.js"]');
-      gtranslateScripts.forEach(s => s.remove());
-    };
-  }, []) // Empty dependency array ensures this runs only once on mount and cleans up on unmount
+  }, []) // Keep other dependencies if any, or empty if only GTranslate was here.
 
   return (
     <div className="min-h-screen bg-white">
@@ -125,7 +92,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute inset-0 bg-black/10 z-10" />
           <img
-            src="/media/3333.jpg"
+            src="/media/frontpage_image.png"
             alt="Daniel Tjäder performing"
             className="w-full h-full object-cover object-top filter grayscale-[30%] blur-xl scale-150"
           />
@@ -164,7 +131,7 @@ export default function Home() {
                   setIsModalOpen(true)
                 }}
               >
-                <div className="relative aspect-video mb-4 overflow-hidden rounded-lg">
+                <div className="relative aspect-video mb-4 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -201,15 +168,15 @@ export default function Home() {
       {/* About Section */}
       <section className="py-24 bg-gray-50 page-section" id="about">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div>
               <img
                 src="/media/bg_04.jpg"
                 alt="Daniel Tjäder portrait"
-                className="rounded-lg shadow-lg w-full"
+                className="shadow-lg w-full"
               />
             </div>
-            <div>
+            <div className="text-left">
               <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Om mig</h2>
               <div className="w-20 h-px bg-gray-200 mb-6"></div>
               {aboutExcerpt.map((paragraph, index) => (
@@ -335,9 +302,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {/* GTranslate Scripts */}
-      <div className="gtranslate_wrapper"></div>
     </div>
   )
 }
