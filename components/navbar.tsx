@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, MouseEvent } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -12,42 +12,49 @@ export default function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
 
-  const pagesRequiringOpaqueNavbar = ['/about', '/music', '/compositions']; // Add other paths if needed
+  const pagesRequiringOpaqueNavbar = ['/about', '/projects', '/compositions'];
   const forceOpaque = pagesRequiringOpaqueNavbar.includes(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
+      setIsScrolled(window.scrollY > 10);
     }
-
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToContact = () => {
-    // Close mobile menu if open
+  const handleScrollToSection = (e: MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     if (isMenuOpen) {
-      setIsMenuOpen(false)
+      setIsMenuOpen(false);
     }
-    
-    // Check if we're already on the homepage
     if (pathname === '/') {
-      // We're on the homepage, just scroll
-      const contactSection = document.getElementById('contact')
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth' })
+      e.preventDefault();
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // We're on another page, navigate to homepage with a hash
-      router.push('/#contact')
+      // Let the Link component handle navigation to /#sectionId
+      // The router.push here would be redundant if href is already set correctly
+      // router.push(`/#${sectionId}`);
     }
-  }
+  };
 
   const navShouldBeOpaque = isScrolled || forceOpaque;
+  const projectsSectionId = "projects"; // Changed from music to projects
+
+  const navItems = [
+    { name: "Projects", href: `/#${projectsSectionId}`, action: (e: MouseEvent<HTMLAnchorElement>) => handleScrollToSection(e, projectsSectionId) },
+    { name: "About", href: "/about" },
+    { name: "Compositions", href: "/compositions" },
+  ];
+
+  const mobileNavItems = [
+    { name: "Home", href: "/" },
+    { name: "Projects", href: `/#${projectsSectionId}`, action: (e: MouseEvent<HTMLAnchorElement>) => handleScrollToSection(e, projectsSectionId) },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/#contact", action: (e: MouseEvent<HTMLAnchorElement>) => handleScrollToSection(e, "contact") },
+  ];
 
   return (
     <header
@@ -62,14 +69,11 @@ export default function Navbar() {
           </Link>
 
           <nav className="hidden md:flex items-center space-x-8">
-            {[
-              { name: "Music", href: "/music" },
-              { name: "About", href: "/about" },
-              { name: "Compositions", href: "/compositions" },
-            ].map((item) => (
+            {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
+                onClick={item.action ? (e) => item.action!(e) : undefined}
                 className={`text-sm ${
                   navShouldBeOpaque ? "text-gray-700 hover:text-gray-900" : "text-white/80 hover:text-white"
                 } transition-colors`}
@@ -81,7 +85,7 @@ export default function Navbar() {
               variant={navShouldBeOpaque ? "default" : "outline"}
               size="sm"
               className={!navShouldBeOpaque ? "bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20" : ""}
-              onClick={scrollToContact}
+              onClick={(e) => handleScrollToSection(e as unknown as MouseEvent<HTMLAnchorElement>, "contact")}
             >
               Contact Now
             </Button>
@@ -110,34 +114,25 @@ export default function Navbar() {
           </div>
 
           <nav className="flex flex-col items-center justify-center h-full space-y-8">
-            {[
-              { name: "Home", href: "/" },
-              { name: "Music", href: "/music" },
-              { name: "About", href: "/about" },
-              { name: "Contact", href: "/contact" }, // Note: This contact is likely a section, handled by scrollToContact
-            ].map((item) => (
+            {mobileNavItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-xl text-gray-900" // Mobile menu text is always dark on white bg
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  // If it's a hash link for the homepage, handle scrolling
-                  if (item.href === "/contact" && pathname === "/") {
-                    scrollToContact();
-                  } else if (item.href === "/contact") {
-                     router.push('/#contact');
+                className="text-xl text-gray-900"
+                onClick={(e) => {
+                  if (item.action) {
+                    item.action(e);
+                  } else {
+                    setIsMenuOpen(false);
                   }
-                  // Regular navigation for other links handled by Link component
                 }}
               >
                 {item.name}
               </Link>
             ))}
             <Button 
-              onClick={() => {
-                setIsMenuOpen(false);
-                scrollToContact();
+              onClick={(e) => {
+                handleScrollToSection(e as unknown as MouseEvent<HTMLAnchorElement>, "contact");
               }}
             >
               Contact Now

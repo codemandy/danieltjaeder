@@ -116,7 +116,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-24 bg-white page-section" id="music">
+      <section className="py-24 bg-white page-section" id="projects">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Projects</h2>
           <div className="w-20 h-px bg-gray-200 mb-12"></div>
