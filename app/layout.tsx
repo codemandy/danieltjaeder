@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
+import GTranslateInitializer from "@/components/GTranslateInitializer"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,6 +23,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         {children}
+        <div className="gtranslate_wrapper"></div>
+        <GTranslateInitializer />
       </body>
     </html>
   )

@@ -25,7 +25,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
             <img
               src={project.image}
               alt={project.title}
-              className="rounded-lg object-cover w-full h-full"
+              className="object-cover w-full h-full"
             />
           </div>
           <div className="space-y-4">

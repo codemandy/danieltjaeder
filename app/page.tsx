@@ -8,6 +8,7 @@ import MusicGrid from "@/components/music-grid"
 import ContactForm from "@/components/contact-form"
 import { useEffect, useState } from 'react'
 import ProjectModal from "@/components/project-modal"
+import { getAboutExcerpt } from "@/lib/aboutText"
 
 interface Project {
   title: string
@@ -21,6 +22,7 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [visibleProjects, setVisibleProjects] = useState(3)
+  const aboutExcerpt = getAboutExcerpt(3)
 
   const allProjects = [
     {
@@ -72,31 +74,31 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // Check for hash in URL
+    // Check for hash in URL for contact section scrolling (existing logic)
     if (window.location.hash === '#contact-section') {
-      const contactSection = document.getElementById('contact-section')
+      const contactSection = document.getElementById('contact-section');
       if (contactSection) {
         setTimeout(() => {
-          contactSection.scrollIntoView({ behavior: 'smooth' })
-        }, 100) // Small delay to ensure the page is fully loaded
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
       }
     }
-  }, [])
+  }, []) // Keep other dependencies if any, or empty if only GTranslate was here.
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden page-section">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute inset-0 bg-black/10 z-10" />
           <img
-            src="/media/3333.jpg"
+            src="/media/frontpage_image.png"
             alt="Daniel Tjäder performing"
             className="w-full h-full object-cover object-top filter grayscale-[30%] blur-xl scale-150"
           />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6">Daniel Tjäder</h1>
+          <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6 notranslate">Daniel Tjäder</h1>
           <p className="text-xl md:text-2xl font-light text-white/90 max-w-2xl mx-auto mb-8">
             Composer · Musician · Sound Designer
           </p>
@@ -114,7 +116,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-24 bg-white" id="music">
+      <section className="py-24 bg-white page-section" id="music">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Projects</h2>
           <div className="w-20 h-px bg-gray-200 mb-12"></div>
@@ -129,7 +131,7 @@ export default function Home() {
                   setIsModalOpen(true)
                 }}
               >
-                <div className="relative aspect-video mb-4 overflow-hidden rounded-lg">
+                <div className="relative aspect-video mb-4 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -164,29 +166,27 @@ export default function Home() {
       />
 
       {/* About Section */}
-      <section className="py-24 bg-gray-50" id="about">
+      <section className="py-24 bg-gray-50 page-section" id="about">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             <div>
               <img
                 src="/media/bg_04.jpg"
                 alt="Daniel Tjäder portrait"
-                className="rounded-lg shadow-lg w-full"
+                className="shadow-lg w-full"
               />
             </div>
-            <div>
-              <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">About</h2>
+            <div className="text-left">
+              <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Om mig</h2>
               <div className="w-20 h-px bg-gray-200 mb-6"></div>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                My interest in music started early, but for a long time I chose music over academic studies. After graduating from university and working as a journalist, I was offered an interview to join The Radio Dept., a band I admired. I started playing keyboards with them, which led to album releases, appearances in blockbuster films and international tours.
-              </p>
-           
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Making music is my greatest source of joy and inspiration, and it is when I am creating music that I feel most alive. Becoming a composer was a great liberation for me. I write music for others and don't have to be in the spotlight. My music is part of something bigger – film, image, or message – where it enhances or gives new dimensions. I love the variety: one day dance music, the next day something for orchestra, indie, ambient or even mello. Music is my passion in all its forms.
-              </p>
+              {aboutExcerpt.map((paragraph, index) => (
+                <p key={index} className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
               <Link href="/about">
                 <Button variant="outline" className="group">
-                  Read Full Biography
+                  Läs Hela Biografin
                   <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
@@ -249,7 +249,7 @@ export default function Home() {
       </section> */}
 
       {/* Contact Section */}
-      <section className="py-24 bg-gray-50" id="contact">
+      <section className="py-24 bg-gray-50 page-section" id="contact">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2 text-center">
@@ -282,7 +282,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-sm text-gray-400">© {new Date().getFullYear()} Daniel Tjäder. All rights reserved.</p>
+              <p className="text-sm text-gray-400">© {new Date().getFullYear()} <span className="notranslate">Daniel Tjäder</span>. All rights reserved.</p>
             </div>
             <div className="flex space-x-6">
               <Link href="/" className="text-sm text-gray-400 hover:text-white transition-colors">
