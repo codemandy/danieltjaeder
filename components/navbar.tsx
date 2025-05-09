@@ -52,7 +52,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className={`text-xl font-light ${isScrolled ? "text-gray-900" : "text-white"}`}>
+          <Link href="/" className={`text-xl font-light ${isScrolled ? "text-gray-900" : "text-white"} notranslate`}>
             Daniel Tjäder
           </Link>
 
@@ -109,7 +109,6 @@ export default function Navbar() {
               { name: "Home", href: "/" },
               { name: "Music", href: "/music" },
               { name: "About", href: "/about" },
-              { name: "Performances", href: "/performances" },
               { name: "Contact", href: "/contact" },
             ].map((item) => (
               <Link

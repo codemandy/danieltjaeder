@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Navbar from "@/components/navbar"
+import { aboutParagraphs } from "@/lib/aboutText"
 
 export default function AboutPage() {
   return (
@@ -10,7 +11,7 @@ export default function AboutPage() {
       
       <header className="pt-24 pb-16 border-b border-gray-100">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-normal text-gray-900 mb-0">About</h1>
+          <h1 className="text-3xl md:text-4xl font-normal text-gray-900 mb-0">Om mig</h1>
         </div>
       </header>
 
@@ -19,68 +20,11 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
             <div className="md:col-span-7 space-y-12">
               <section>
-                <p className="text-xl leading-relaxed text-gray-700 mb-8">
-                  I'm a music composer specializing in customized soundscapes and music productions for film, theatre as well as audio branding. Clients include well-known cultural institutions and companies, mainly in Sweden but also numerous syncs in ads and movies worldwide. I have previously (20+ years) been a member/founder of swedish indie bands The Radio Dept and Korallreven, writing songs, producing, touring etc.
-                </p>
-
-                <p className="text-xl leading-relaxed text-gray-700 mb-8">
-                  Songwriting credits for a number of big swedish pop acts and a major league american artist. I have also done arts projects on my own and lectured at various universities in Sweden.
-                </p>
-
-                <p className="text-xl leading-relaxed text-gray-700 mb-8">
-                  Since 2016, I have focused on creating music and sound for commissions for, among others, Daniel
-                  Berlin Krog, Malmö City Theatre and the theatre company Bombina Bombast. In parallel, I have taught at
-                  universities in Malmö and Stockholm, run projects with cultural administrations and cultural
-                  institutions, and analyzed and wrote reports.
-                </p>
-
-                <p className="text-xl leading-relaxed text-gray-700">
-                  Making music is my greatest source of joy and inspiration, and it is when I am creating music that I
-                  feel most alive. Becoming a composer was a great liberation for me. I write music for others and don't
-                  have to be in the spotlight. My music is part of something bigger – film, image, or message – where it
-                  enhances or gives new dimensions. I love the variety: one day dance music, the next day something for
-                  orchestra, indie, ambient or even mello. Music is my passion in all its forms.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-2xl font-normal text-gray-900 mb-8">Selected Works</h2>
-                <div className="space-y-8">
-                  {[
-                    {
-                      title: "Malmö City Theatre",
-                      description: "Original score for 'The Winter's Tale'",
-                      year: "2022",
-                    },
-                    {
-                      title: "Bombina Bombast",
-                      description: "Sound design for 'Virtual Reality Experience'",
-                      year: "2020",
-                    },
-                    {
-                      title: "Daniel Berlin Krog",
-                      description: "Ambient soundscape for restaurant experience",
-                      year: "2019",
-                    },
-                    {
-                      title: "Korallreven - An Album",
-                      description: "Co-writer and producer",
-                      year: "2011",
-                    },
-                  ].map((work, index) => (
-                    <div key={index} className="border-t border-gray-100 pt-6">
-                      <div className="text-sm text-gray-500 mb-1">{work.year}</div>
-                      <h3 className="text-xl font-normal text-gray-900 mb-1">{work.title}</h3>
-                      <p className="text-gray-600">{work.description}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-8">
-                  <Link href="/music" className="inline-flex items-center text-gray-900 hover:underline">
-                    View all works
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </div>
+                {aboutParagraphs.map((paragraph, index) => (
+                  <p key={index} className={`text-xl leading-relaxed text-gray-700 ${index === aboutParagraphs.length - 1 ? '' : 'mb-8'}`}>
+                    {paragraph}
+                  </p>
+                ))}
               </section>
             </div>
 

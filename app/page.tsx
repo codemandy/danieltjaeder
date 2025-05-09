@@ -8,6 +8,7 @@ import MusicGrid from "@/components/music-grid"
 import ContactForm from "@/components/contact-form"
 import { useEffect, useState } from 'react'
 import ProjectModal from "@/components/project-modal"
+import { getAboutExcerpt } from "@/lib/aboutText"
 
 interface Project {
   title: string
@@ -21,6 +22,7 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [visibleProjects, setVisibleProjects] = useState(3)
+  const aboutExcerpt = getAboutExcerpt(1)
 
   const allProjects = [
     {
@@ -72,21 +74,54 @@ export default function Home() {
   }
 
   useEffect(() => {
-    // Check for hash in URL
+    // GTranslate setup
+    // @ts-ignore
+    window.gtranslateSettings = {
+      "default_language": "sv",
+      "native_language_names": true,
+      "languages": ["sv", "en"],
+      "globe_color": "#000000", // Globe color is always black
+      "wrapper_selector": ".gtranslate_wrapper",
+      "flag_size": 16,
+      "horizontal_position": "right",
+      "vertical_position": "bottom",
+      "globe_size": 16
+    };
+
+    const globeWrapper = document.querySelector('.gtranslate_wrapper');
+
+    // Initial load of the GTranslate script
+    const initialScript = document.createElement('script');
+    initialScript.src = "https://cdn.gtranslate.net/widgets/latest/globe.js";
+    initialScript.defer = true;
+    document.body.appendChild(initialScript);
+
+    // Check for hash in URL for contact section scrolling (existing logic)
     if (window.location.hash === '#contact-section') {
-      const contactSection = document.getElementById('contact-section')
+      const contactSection = document.getElementById('contact-section');
       if (contactSection) {
         setTimeout(() => {
-          contactSection.scrollIntoView({ behavior: 'smooth' })
-        }, 100) // Small delay to ensure the page is fully loaded
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
       }
     }
-  }, [])
+
+    return () => {
+      // Cleanup GTranslate
+      if (globeWrapper) {
+        // @ts-ignore
+        globeWrapper.innerHTML = ''; // Clear the wrapper on unmount
+      }
+      // Remove the dynamically added GTranslate script
+      const gtranslateScripts = document.querySelectorAll('script[src="https://cdn.gtranslate.net/widgets/latest/globe.js"]');
+      gtranslateScripts.forEach(s => s.remove());
+    };
+  }, []) // Empty dependency array ensures this runs only once on mount and cleans up on unmount
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden page-section">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute inset-0 bg-black/10 z-10" />
           <img
@@ -96,7 +131,7 @@ export default function Home() {
           />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6">Daniel Tjäder</h1>
+          <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6 notranslate">Daniel Tjäder</h1>
           <p className="text-xl md:text-2xl font-light text-white/90 max-w-2xl mx-auto mb-8">
             Composer · Musician · Sound Designer
           </p>
@@ -114,7 +149,7 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-24 bg-white" id="music">
+      <section className="py-24 bg-white page-section" id="music">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Projects</h2>
           <div className="w-20 h-px bg-gray-200 mb-12"></div>
@@ -164,7 +199,7 @@ export default function Home() {
       />
 
       {/* About Section */}
-      <section className="py-24 bg-gray-50" id="about">
+      <section className="py-24 bg-gray-50 page-section" id="about">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
@@ -175,18 +210,16 @@ export default function Home() {
               />
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">About</h2>
+              <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Om mig</h2>
               <div className="w-20 h-px bg-gray-200 mb-6"></div>
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                My interest in music started early, but for a long time I chose music over academic studies. After graduating from university and working as a journalist, I was offered an interview to join The Radio Dept., a band I admired. I started playing keyboards with them, which led to album releases, appearances in blockbuster films and international tours.
-              </p>
-           
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Making music is my greatest source of joy and inspiration, and it is when I am creating music that I feel most alive. Becoming a composer was a great liberation for me. I write music for others and don't have to be in the spotlight. My music is part of something bigger – film, image, or message – where it enhances or gives new dimensions. I love the variety: one day dance music, the next day something for orchestra, indie, ambient or even mello. Music is my passion in all its forms.
-              </p>
+              {aboutExcerpt.map((paragraph, index) => (
+                <p key={index} className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
               <Link href="/about">
                 <Button variant="outline" className="group">
-                  Read Full Biography
+                  Läs Hela Biografin
                   <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
@@ -249,7 +282,7 @@ export default function Home() {
       </section> */}
 
       {/* Contact Section */}
-      <section className="py-24 bg-gray-50" id="contact">
+      <section className="py-24 bg-gray-50 page-section" id="contact">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2 text-center">
@@ -282,7 +315,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <p className="text-sm text-gray-400">© {new Date().getFullYear()} Daniel Tjäder. All rights reserved.</p>
+              <p className="text-sm text-gray-400">© {new Date().getFullYear()} <span className="notranslate">Daniel Tjäder</span>. All rights reserved.</p>
             </div>
             <div className="flex space-x-6">
               <Link href="/" className="text-sm text-gray-400 hover:text-white transition-colors">
@@ -302,6 +335,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* GTranslate Scripts */}
+      <div className="gtranslate_wrapper"></div>
     </div>
   )
 }
