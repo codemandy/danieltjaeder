@@ -1,16 +1,11 @@
-"use client"
-
 import Link from "next/link"
 import { ChevronRight, Mail, Instagram, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import AudioPlayer from "@/components/audio-player"
-import MusicGrid from "@/components/music-grid"
 import ContactForm from "@/components/contact-form"
-import { useEffect, useState } from 'react'
-import ProjectModal from "@/components/project-modal"
 import { getAboutExcerpt } from "@/lib/aboutText"
 import type { Project } from '@/payload-types'
 import ProjectList from "@/components/ProjectList"
+import { headers } from "next/headers"
 //
 // interface Project {
 //   title: string
@@ -21,12 +16,16 @@ import ProjectList from "@/components/ProjectList"
 // }
 
 // This function will now fetch projects from the Payload API
-async function getProjects(): Promise<ProjectType[]> {
+async function getProjects(): Promise<Project[]> {
   try {
-    const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-    const res = await fetch(`${base}/api/projects?limit=100`, {
+    // Build absolute URL because Node fetch requires it in Server Components
+    const headersList = await headers() as any
+    const host = headersList.get('x-forwarded-host') || headersList.get('host') || 'localhost:3000'
+    const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
+    const url = `${protocol}://${host}/api/projects?limit=100`
+    const res = await fetch(url, {
       next: { tags: ['projects'] },
-    })
+    } as RequestInit & { next: { tags: string[] } })
     
     if (!res.ok) {
       throw new Error('Failed to fetch projects')
@@ -123,7 +122,7 @@ export default async function Home() {
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900 mb-2">Contact</h2>
             <div className="w-20 h-px bg-gray-200 mx-auto mb-12"></div>
           </div>
-          <ContactForm />
+          {/* <ContactForm /> */}
         </div>
       </section>
       
