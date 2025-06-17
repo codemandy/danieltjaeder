@@ -27,6 +27,20 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.md$/,
+      use: [
+        {
+          loader: "frontmatter-markdown-loader",
+          options: {
+            mode: ["react-component"],
+          },
+        },
+      ],
+    });
+    return config;
+  },
 }
 
 if (userConfig) {
