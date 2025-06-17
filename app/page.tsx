@@ -9,6 +9,7 @@ import ContactForm from "@/components/contact-form"
 import { useEffect, useState } from 'react'
 import ProjectModal from "@/components/project-modal"
 import { getAboutExcerpt } from "@/lib/aboutText"
+import { attributes as homeContent } from "@/content/home.md";
 
 interface Project {
   title: string
@@ -98,10 +99,12 @@ export default function Home() {
           />
         </div>
         <div className="container relative z-10 mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6 notranslate">Daniel Tjäder</h1>
-          <p className="text-xl md:text-2xl font-light text-white/90 max-w-2xl mx-auto mb-8">
-            Composer · Musician · Sound Designer
-          </p>
+          <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6 notranslate">{homeContent.title}</h1>
+          {homeContent.subtitle && (
+            <p className="text-xl md:text-2xl font-light text-white/90 max-w-2xl mx-auto mb-8">
+              {homeContent.subtitle}
+            </p>
+          )}
           {/* <Button
             variant="outline"
             size="lg"

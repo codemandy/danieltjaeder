@@ -1,7 +1,8 @@
+local_backend: true # Enable local backend
+
 backend:
   name: git-gateway
   branch: main
-  local_backend: true # Enable local backend
 
 # Media folders
 media_folder: "public/media"
@@ -31,6 +32,13 @@ collections:
               { label: "Platform", name: "platform", widget: "string" },
               { label: "URL", name: "url", widget: "string" }
             ]}
+      - file: "content/home.md"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
 
   # Compositions
   - name: "compositions"
