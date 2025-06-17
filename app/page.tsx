@@ -8,8 +8,8 @@ import MusicGrid from "@/components/music-grid"
 import ContactForm from "@/components/contact-form"
 import { useEffect, useState } from 'react'
 import ProjectModal from "@/components/project-modal"
-import { getAboutExcerpt } from "@/lib/aboutText"
 import { attributes as homeContent } from "@/content/home.md";
+import { attributes as aboutAttrs } from "@/content/about.md";
 
 interface Project {
   title: string
@@ -23,7 +23,7 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [visibleProjects, setVisibleProjects] = useState(3)
-  const aboutExcerpt = getAboutExcerpt(3)
+  const aboutExcerpt: string[] = aboutAttrs.excerpt || []
 
   const allProjects = [
     {
