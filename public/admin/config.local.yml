@@ -14,11 +14,12 @@ collections:
     label: "Pages"
     files:
       - file: "content/home.md"
-        label: "Home Page"
+        label: "Front Page"
         name: "home"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+          - { label: "Hero Background", name: "hero_background", widget: "image", required: false }
           - { label: "Body", name: "body", widget: "markdown" }
           - { label: "Excerpt Paragraphs", name: "excerpt", widget: "list", summary: "{{fields.text}}", field: {label: "Paragraph", name: "text", widget: "text"} }
 
@@ -93,3 +94,30 @@ collections:
             ]}
           - { label: "Body", name: "body", widget: "markdown" }
           - { label: "Excerpt Paragraphs", name: "excerpt", widget: "list", summary: "{{fields.text}}", field: {label: "Paragraph", name: "text", widget: "text"} }
+
+# Navigation
+- name: "navigation"
+  label: "Navigation"
+  files:
+    - file: "content/settings/navigation.yml"
+      label: "Main Navigation"
+      name: "main_navigation"
+      fields:
+        - { label: "Menu Items", name: "items", widget: "list", fields: [
+            { label: "Label", name: "label", widget: "string" },
+            { label: "URL", name: "url", widget: "string" }
+          ]}
+
+# Footer
+- name: "footer"
+  label: "Footer"
+  files:
+    - file: "content/settings/footer.yml"
+      label: "Footer Content"
+      name: "footer"
+      fields:
+        - { label: "Footer Text", name: "footer_text", widget: "text" }
+        - { label: "Social Links", name: "social_links", widget: "list", fields: [
+            { label: "Platform", name: "platform", widget: "string" },
+            { label: "URL", name: "url", widget: "string" }
+          ]}

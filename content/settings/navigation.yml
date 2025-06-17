@@ -1,0 +1,9 @@
+items:
+  - label: "Home"
+    url: "/#top"
+  - label: "Projects"
+    url: "/#projects"
+  - label: "About"
+    url: "/about"
+  - label: "Contact"
+    url: "/#contact"
