@@ -9,14 +9,15 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <Navbar />
       
-      <header className="pt-24 pb-16">
-       
+      <header className="pt-12 pb-8">
+        {/* Intentionally left empty; reduced padding to tighten top spacing */}
       </header>
 
-      <main className="py-16 md:py-24">
+      <main className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
             <div className="md:col-span-7 space-y-12">
+              <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900">Biography</h2>
               <section>
                 {aboutParagraphs.map((paragraph, index) => (
                   <p 
@@ -101,6 +102,28 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="py-8 bg-gray-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <p className="text-sm text-gray-400">© {new Date().getFullYear()} <span className="notranslate">Daniel Tjäder</span>. All rights reserved.</p>
+            </div>
+            <div className="flex space-x-6">
+              <Link href="/#top" className="text-sm text-gray-400 hover:text-white transition-colors">
+                Home
+              </Link>
+              <Link href="/about" className="text-sm text-gray-400 hover:text-white transition-colors">
+                About
+              </Link>
+              <Link href="/#contact" className="text-sm text-gray-400 hover:text-white transition-colors">
+                Contact
+              </Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
