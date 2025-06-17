@@ -13,19 +13,6 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-      - file: "app/about/page.tsx"
-        label: "About Page"
-        name: "about"
-        fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Content", name: "content", widget: "markdown" }
-          - { label: "Profile Image", name: "profileImage", widget: "image", required: false }
-          - { label: "Bio", name: "bio", widget: "text" }
-          - { label: "Contact Email", name: "contactEmail", widget: "string", required: false }
-          - { label: "Social Links", name: "socialLinks", widget: "list", fields: [
-              { label: "Platform", name: "platform", widget: "string" },
-              { label: "URL", name: "url", widget: "string" }
-            ]}
       - file: "content/home.md"
         label: "Home Page"
         name: "home"
@@ -87,3 +74,20 @@ collections:
               { label: "Label", name: "label", widget: "string" },
               { label: "URL", name: "url", widget: "string" }
             ]}
+
+  # About Page
+  - name: "about"
+    label: "About Page"
+    files:
+      - file: "content/about.md"
+        label: "About Page"
+        name: "about"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Profile Image", name: "profile_image", widget: "image", required: false }
+          - { label: "Contact Email", name: "contact_email", widget: "string", required: false }
+          - { label: "Social Links", name: "social_links", widget: "list", fields: [
+              { label: "Platform", name: "platform", widget: "string" },
+              { label: "URL", name: "url", widget: "string" }
+            ]}
+          - { label: "Body", name: "body", widget: "markdown" }

@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Navbar from "@/components/navbar"
-import { aboutParagraphs } from "@/lib/aboutText"
+import { attributes as aboutAttrs, react as AboutContent } from "@/content/about.md"
 
 export default function AboutPage() {
   return (
@@ -18,15 +18,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
             <div className="md:col-span-7 space-y-12">
               <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900">Biography</h2>
-              <section>
-                {aboutParagraphs.map((paragraph, index) => (
-                  <p 
-                    key={index} 
-                    className={`text-xl leading-relaxed text-gray-700 ${index === aboutParagraphs.length - 1 ? '' : 'mb-8'}`}
-                  >
-                    {paragraph}
-                  </p>
-                ))}
+              <section className="prose max-w-none">
+                <AboutContent />
               </section>
             </div>
 
@@ -34,7 +27,7 @@ export default function AboutPage() {
               <div className="sticky top-24 space-y-12">
                 <div>
                   <img
-                    src="/media/about_01.png"
+                    src={aboutAttrs.profile_image || "/media/about_01.png"}
                     alt="Daniel Tjäder portrait"
                     className="shadow-lg w-full"
                   />
@@ -43,34 +36,22 @@ export default function AboutPage() {
                 <section>
                   <h2 className="text-lg font-normal text-gray-900 mb-4">Contact</h2>
                   <a
-                    href="mailto:contact@danieltjader.com"
+                    href={`mailto:${aboutAttrs.contact_email || "contact@danieltjader.com"}`}
                     className="text-gray-700 hover:text-gray-900 transition-colors"
                   >
-                    contact@danieltjader.com
+                    {aboutAttrs.contact_email || "contact@danieltjader.com"}
                   </a>
                 </section>
 
                 <section>
                   <h2 className="text-2xl font-semibold mb-6">Platforms</h2>
                   <div className="space-y-4">
-                    <a href="https://www.instagram.com/daniel_cheyda" target="_blank" rel="noopener noreferrer" className="flex items-center text-lg hover:text-blue-600 transition-colors">
-                      <span className="mr-2">INSTAGRAM</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                    <a href="https://twine.net/Cheyda" target="_blank" rel="noopener noreferrer" className="flex items-center text-lg hover:text-blue-600 transition-colors">
-                      <span className="mr-2">TWINE</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                    <a href="mailto:your.email@example.com" className="flex items-center text-lg hover:text-blue-600 transition-colors">
-                      <span className="mr-2">EMAIL</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </a>
+                    {(aboutAttrs.social_links || []).map((link: any, idx: number) => (
+                      <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center text-lg hover:text-blue-600 transition-colors">
+                        <span className="mr-2 uppercase">{link.platform}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+                      </a>
+                    ))}
                   </div>
                 </section>
 
