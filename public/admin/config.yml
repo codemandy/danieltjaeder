@@ -38,6 +38,7 @@ collections:
               { label: "URL", name: "url", widget: "string" }
             ]}
           - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Excerpt Paragraphs", name: "excerpt", widget: "list", summary: "{{fields.text}}", field: {label: "Paragraph", name: "text", widget: "text"} }
 
   # Compositions
   - name: "compositions"

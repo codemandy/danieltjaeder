@@ -7,6 +7,10 @@ social_links:
     url: "https://www.instagram.com/daniel_cheyda"
   - platform: Twine
     url: "https://twine.net/Cheyda"
+excerpt:
+  - "När man vänder sig till mig för musik eller ljuddesign är det ofta för att man vill ha något annorlunda. Det generiska kan jag få till men det är framförallt musik som blandar, böjer och vrider på genrer som är min styrka."
+  - "Mitt intresse för musik började tidigt, men länge valde jag bort musiken för akademiska studier. Efter att ha utbildat mig på universitetet och arbetat som journalist, blev jag under en intervju erbjuden att gå med i The Radio Dept., ett band jag beundrade. Jag började spela keyboards med dem, vilket ledde till skivsläpp, medverkan i storfilmer och internationella turnéer."
+  - "År 2009 grundade jag duon Korallreven tillsammans med en vän, där vi gemensamt skrev och producerade all musik. Vi fick snabbt skivkontrakt i USA, vilket innebar intensiva år av musikskapande, inklusive låtskrivning för artister som Newkid, Lorentz och Jonathan Johansson."
 ---
 
 När man vänder sig till mig för musik eller ljuddesign är det ofta för att man vill ha något annorlunda. Det generiska kan jag få till men det är framförallt musik som blandar, böjer och vrider på genrer som är min styrka.
