@@ -88,7 +88,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden page-section">
+      <section id="top" className="relative h-screen flex items-center justify-center overflow-hidden page-section">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute inset-0 bg-black/10 z-10" />
           <img
@@ -259,7 +259,7 @@ export default function Home() {
 
             <ContactForm />
 
-            <div className="mt-16 flex justify-center space-x-6">
+            {/* <div className="mt-16 flex justify-center space-x-6">
               <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
                 <Mail className="h-6 w-6" />
                 <span className="sr-only">Email</span>
@@ -267,12 +267,12 @@ export default function Home() {
               <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
                 <Instagram className="h-6 w-6" />
                 <span className="sr-only">Instagram</span>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
+              </a> */}
+              {/* <a href="#" className="text-gray-400 hover:text-gray-900 transition-colors">
                 <Twitter className="h-6 w-6" />
                 <span className="sr-only">Twitter</span>
-              </a>
-            </div>
+              </a> */}
+            {/* </div> */}
           </div>
         </div>
       </section>
@@ -285,17 +285,14 @@ export default function Home() {
               <p className="text-sm text-gray-400">© {new Date().getFullYear()} <span className="notranslate">Daniel Tjäder</span>. All rights reserved.</p>
             </div>
             <div className="flex space-x-6">
-              <Link href="/" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <Link href="#top" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Home
-              </Link>
-              <Link href="/music" className="text-sm text-gray-400 hover:text-white transition-colors">
-                Music
               </Link>
               <Link href="/about" className="text-sm text-gray-400 hover:text-white transition-colors">
                 About
               </Link>
             
-              <Link href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
+              <Link href="#contact" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Contact
               </Link>
             </div>
