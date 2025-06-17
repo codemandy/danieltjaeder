@@ -1,11 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import GTranslateInitializer from "@/components/GTranslateInitializer"
-
-const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Daniel Tjäder | Composer",
@@ -20,7 +17,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <head>
+        {/* Custom font DTL Haarlemmer Sans D */}
+        <link
+          href="https://db.onlinewebfonts.com/c/40599ff8ca2eb503c82cad0b8ab28561?family=DTLHaarlemmerSansD"
+          rel="stylesheet"
+          type="text/css"
+        />
+        <link
+          href="https://db.onlinewebfonts.com/c/dc5f5d1ac747ff380de858c82201518d?family=DTLHaarlemmerSD-Bold"
+          rel="stylesheet"
+          type="text/css"
+        />
+      </head>
+      <body>
         <Navbar />
         {children}
         <div className="gtranslate_wrapper"></div>
@@ -29,7 +39,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-
-import './globals.css'
