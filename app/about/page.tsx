@@ -17,8 +17,8 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
             <div className="md:col-span-7 space-y-12">
-              <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900">Biography</h2>
-              <section className="prose max-w-none">
+              <h2 className="text-2xl md:text-3xl font-light tracking-tight text-gray-900">Biography</h2>
+              <section className="prose text-[1.1rem] leading-relaxed max-w-none">                
                 <AboutContent />
               </section>
             </div>
