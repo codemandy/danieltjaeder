@@ -21,11 +21,11 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
           <DialogTitle className="text-2xl font-light">{project.title}</DialogTitle>
         </DialogHeader>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-          <div className="relative aspect-video">
+          <div className="relative max-h-[80vh]">
             <img
               src={project.image}
               alt={project.title}
-              className="object-cover w-full h-full"
+              className="object-contain w-full h-full"
             />
           </div>
           <div className="space-y-4">
