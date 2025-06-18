@@ -18,6 +18,8 @@ interface Project {
   details: string
   audioSrc: string
   credits: string
+  gallery?: string[]
+  citation: string
 }
 
 export default function Home() {
@@ -34,14 +36,18 @@ export default function Home() {
       details: "Jag är ena halvan av ljudkonstkollektivet Studio Seedaa som utforskar ljud och rum och presenterar ljudkonst för barn och äldre. Vi har bland annat ställt ut på Form/Design Center i Malmö, deltagit i Malmö muséers utställning Känn staden och genomfört projektet Skisser på äldreboenden i Helsingborg och Malmö.",
       audioSrc: "/audio/test.mp3",
       credits: "",
+      gallery: ["/media/projects/studio_seedaa.png"],
+      citation: "",
     },
     {
       title: "Korallreven",
-      description: "Korallreven: “Dream pop of the highest order”",
+      description: 'Korallreven: "Dream pop of the highest order"',
       image: "/media/projects/korallreven.jpg",
-      details: "Korallreven är en svensk musikgrupp. Gruppen släppte sitt debutalbum An Album by Korallreven 2011 på Acéphale Records som mottogs mycket väl världen över, och har bland annat kallats “Dream pop of the highest order”. ",
+      details: 'Korallreven är en svensk musikgrupp. Gruppen släppte sitt debutalbum An Album by Korallreven 2011 på Acéphale Records som mottogs mycket väl världen över, och har bland annat kallats "Dream pop of the highest order". ',
       audioSrc: "/audio/test.mp3",
       credits: "",
+      gallery: ["/media/projects/korallreven.jpg"],
+      citation: "",
     },
     {
       title: "Malmö Stadsteater",
@@ -50,6 +56,8 @@ export default function Home() {
       details: "2023 inledde jag ett samarbete med Malmö Stadsteater där jag tar fram musik som en del av deras branding-arbete.. Sedan dess har vi fortsatt samarbetet där jag skapar skräddarsydd musik som berör och engagerar deras publik i sociala medier samt i egna videor som beskriver det fortlöpande konstnärliga arbetet på teatern.",
       audioSrc: "/audio/test.mp3",
       credits: "",
+      gallery: ["/media/projects/Stadsteater_02.png"],
+      citation: "Erik Roman, Malmö Stadsteater. Daniel har ett bra sinne för att hitta referenser som passar den aktuella målgruppen och sedan skapa musik med en tydlig egen karaktär.",
     },
     {
       title: "Euro Fan Café/ReOrient",
@@ -58,6 +66,8 @@ export default function Home() {
       details: "Jag gjorde en låt i tre olika längder och utföranden till Euro Fan Café Festival som gick av stapeln i Folkets Park i Malmö under Eurovisions-veckan 2024. Det här var den stora samlingspunkten för alla inhemska och tillresta fans under Eurovision-finalerna 2024 som hölls i Malmö. Dessutom fanns en kortversion med en fanfar som användes särskilt under olika lekar under festivalen.",
       audioSrc: "/audio/urban.mp3",
       credits: "",
+      gallery: ["/media/projects/euro.png"],
+      citation: "",
     },
     {
       title: "Kungen i Gult, Bombina Bombast",
@@ -66,30 +76,38 @@ export default function Home() {
       details: "För drygt 130 år sedan upptäcktes en av världslitteraturens märkligaste texter. En ljuvlig och vidrig text som har hemsökt oss under en stor del av våra liv: Teaterpjäsen Kungen i gult. Den här tillställningen är tillägnad den pjäsen. Det är berättelsen om den skräck och längtan som den gule konungen har väckt i oss och andra. En utställning, en ritual och en gemensam sorgesång.",
       audioSrc: "/audio/nordic.mp3",
       credits: "Musik och ljuddesign: Daniel & Matilda Tjäder",
+      gallery: ["/media/projects/kg_01.png"],
+      citation: "",
     },
     {
-      title: "Berlin Daniel",
-      description: "Orchestral Composition (2022)",
-      image: "/media/projects/berlin_daniel.jpg",
+      title: "The Radio Dept",
+      description: "Världens mjukaste/hårdaste indieband",
+      image: "/media/projects/radio-dept.jpg",
       details: "A symphonic piece that blends traditional Nordic folk music with contemporary orchestral arrangements. Performed by the Stockholm Philharmonic Orchestra.",
       audioSrc: "/audio/nordic.mp3",
       credits: "",
+      gallery: ["/media/projects/radio-dept.jpg","/media/projects/radio-dept.jpg"],
+      citation: "",
     },
     {
-      title: "Digital Soundscapes",
-      description: "Interactive Installation (2023)",
-      image: "/media/projects/kg_01.png",
-      details: "An interactive sound installation that responds to audience movement, creating unique sonic environments for each visitor.",
+      title: "Daniel Berlin, Michelin-belönad krögare",
+      description: "Ljudlandskap",
+      image: "/media/projects/berlin_daniel.jpg",
+      details: "Ljudlandskap till en matupplevelse",
+      audioSrc: "/audio/nordic.mp3",
+      credits: "",
+      gallery: ["/media/projects/berlin_daniel.jpg"],
+      citation: "Att sätta ljud till att förstärka den upplevelsen vi vill förmedla är komplext men jag upplever att både målet med vårt samarbete och framförallt resan mot målet var oerhört inspirerande. Daniel är professionell och lyhörd men har en tydlig ide vilket jag verkligen uppskattar. Resultatet blev fantastiskt och jag har sedan dess fördjupat mig mer i vad det innebär att förena gastronomi med musik och ljud. Båda är viktiga men tillsammans skapas minnen för alltid",
+    },
+    {
+      title: "Slumberland",
+      description: "Slumberland: En VR-föreställning (2022)",
+      image: "/media/projects/slumberland.webp",
+      details: "Vi lever i en uppmärksamhetsekonomi där hur vi strukturerar våra liv och arbete idag hindrar oss från att sova. Upp till 30% av befolkningen i utvecklade länder lider av kronisk sömnlöshet. Vi är för trötta för att göra något åt ett system som tjänar på varje blick, klick eller finger som glider över en skärm. Slumberland är vårt sätt att försöka vila, tillsammans med dig. För är inte det mest radikala då att sova? Och inte bara som en individuell kamp om att slå sig till ro, utan att kollektivt stänga våra ögon för en stund.",
       audioSrc: "/audio/digital.mp3",
-      credits: "",
-    },
-    {
-      title: "Ambient Reflections",
-      description: "Album Release (2022)",
-      image: "/media/projects/seaofsounds.jpg",
-      details: "A collection of ambient compositions exploring the relationship between natural and electronic sounds.",
-      audioSrc: "/audio/ambient.mp3",
-      credits: "",
+      credits: "Musik av Daniel & Matilda Tjäder",
+      gallery: ["/media/projects/slumberland.webp","/media/projects/slumberland_02.jpeg"],
+      citation: "",
     },
    
   ]

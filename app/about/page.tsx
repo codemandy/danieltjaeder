@@ -18,7 +18,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16">
             <div className="md:col-span-7 space-y-12">
               <h2 className="text-3xl md:text-4xl font-light tracking-tight text-gray-900">Biography</h2>
-              <section className="prose max-w-none">
+              <section className="prose prose-xl max-w-none">
                 <AboutContent />
               </section>
             </div>
