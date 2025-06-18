@@ -27,17 +27,31 @@ export default function Home() {
 
   const allProjects = [
     {
-      title: "SOS",
-      description: "From the album 'Midnight Compositions' (2023)",
-      image: "/media/projects/sos.jpeg",
-      details: "A contemporary composition exploring the relationship between sound and space. This piece was created as part of a larger project investigating the acoustic properties of different environments.",
+      title: "Studio See-daa",
+      description: "Studio See-daa: Ett ljudkonstkollektiv i Skåne",
+      image: "/media/projects/studio_seedaa.png",
+      details: "Jag är ena halvan av ljudkonstkollektivet Studio Seedaa som utforskar ljud och rum och presenterar ljudkonst för barn och äldre. Vi har bland annat ställt ut på Form/Design Center i Malmö, deltagit i Malmö muséers utställning Känn staden och genomfört projektet Skisser på äldreboenden i Helsingborg och Malmö.",
       audioSrc: "/audio/test.mp3"
     },
     {
-      title: "EURO",
-      description: "Sound Design Project (2023)",
+      title: "Korallreven",
+      description: "Korallreven: “Dream pop of the highest order”",
+      image: "/media/projects/korallreven.jpg",
+      details: "Korallreven är en svensk musikgrupp. Gruppen släppte sitt debutalbum An Album by Korallreven 2011 på Acéphale Records som mottogs mycket väl världen över, och har bland annat kallats “Dream pop of the highest order”. ",
+      audioSrc: "/audio/test.mp3"
+    },
+    {
+      title: "Malmö Stadsteater",
+      description: "Malmö Stadsteater: ljudbranding",
+      image: "/media/projects/Stadsteater_02.png",
+      details: "2023 inledde jag ett samarbete med Malmö Stadsteater där jag tar fram musik som en del av deras branding-arbete.. Sedan dess har vi fortsatt samarbetet där jag skapar skräddarsydd musik som berör och engagerar deras publik i sociala medier samt i egna videor som beskriver det fortlöpande konstnärliga arbetet på teatern.",
+      audioSrc: "/audio/test.mp3"
+    },
+    {
+      title: "Euro Fan Café/ReOrient",
+      description: "Euro Fan Café: ljudbranding",
       image: "/media/projects/euro.png",
-      details: "An immersive sound installation that transforms urban noise into musical elements. This project was exhibited at the Stockholm Sound Festival.",
+      details: "Jag gjorde en låt i tre olika längder och utföranden till Euro Fan Café Festival som gick av stapeln i Folkets Park i Malmö under Eurovisions-veckan 2024. Det här var den stora samlingspunkten för alla inhemska och tillresta fans under Eurovision-finalerna 2024 som hölls i Malmö. Dessutom fanns en kortversion med en fanfar som användes särskilt under olika lekar under festivalen.",
       audioSrc: "/audio/urban.mp3"
     },
     {
@@ -61,13 +75,7 @@ export default function Home() {
       details: "A collection of ambient compositions exploring the relationship between natural and electronic sounds.",
       audioSrc: "/audio/ambient.mp3"
     },
-    {
-      title: "Sonic Architecture",
-      description: "Exhibition Soundtrack (2023)",
-      image: "/media/projects/studio_seedaa.png",
-      details: "A site-specific sound composition created for the Modern Architecture Museum's main exhibition.",
-      audioSrc: "/audio/architecture.mp3"
-    }
+   
   ]
 
   const loadMoreProjects = () => {
