@@ -8,6 +8,7 @@ interface ProjectModalProps {
     description: string
     image: string
     details: string
+    credits: string
   } | null
 }
 
@@ -18,7 +19,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-light">{project.title}</DialogTitle>
+          <DialogTitle className="text-2xl font-semibold">{project.title}</DialogTitle>
         </DialogHeader>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div className="relative max-h-[80vh]">
@@ -29,10 +30,17 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
             />
           </div>
           <div className="space-y-4">
-            <p className="text-gray-600">{project.description}</p>
+            <p className="font-semibold">{project.description}</p>
             <div className="prose prose-sm">
+              <h4 className="font-semibold">Description</h4>
               <p>{project.details}</p>
             </div>
+            {project.credits && (
+              <div className="prose prose-sm">
+                <h4 className="font-semibold">Credits</h4>
+                <p>{project.credits}</p>
+              </div>
+            )}
           </div>
         </div>
       </DialogContent>

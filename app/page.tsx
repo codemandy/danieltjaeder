@@ -17,6 +17,7 @@ interface Project {
   image: string
   details: string
   audioSrc: string
+  credits: string
 }
 
 export default function Home() {
@@ -31,49 +32,64 @@ export default function Home() {
       description: "Studio See-daa: Ett ljudkonstkollektiv i Skåne",
       image: "/media/projects/studio_seedaa.png",
       details: "Jag är ena halvan av ljudkonstkollektivet Studio Seedaa som utforskar ljud och rum och presenterar ljudkonst för barn och äldre. Vi har bland annat ställt ut på Form/Design Center i Malmö, deltagit i Malmö muséers utställning Känn staden och genomfört projektet Skisser på äldreboenden i Helsingborg och Malmö.",
-      audioSrc: "/audio/test.mp3"
+      audioSrc: "/audio/test.mp3",
+      credits: "",
     },
     {
       title: "Korallreven",
       description: "Korallreven: “Dream pop of the highest order”",
       image: "/media/projects/korallreven.jpg",
       details: "Korallreven är en svensk musikgrupp. Gruppen släppte sitt debutalbum An Album by Korallreven 2011 på Acéphale Records som mottogs mycket väl världen över, och har bland annat kallats “Dream pop of the highest order”. ",
-      audioSrc: "/audio/test.mp3"
+      audioSrc: "/audio/test.mp3",
+      credits: "",
     },
     {
       title: "Malmö Stadsteater",
       description: "Malmö Stadsteater: ljudbranding",
       image: "/media/projects/Stadsteater_02.png",
       details: "2023 inledde jag ett samarbete med Malmö Stadsteater där jag tar fram musik som en del av deras branding-arbete.. Sedan dess har vi fortsatt samarbetet där jag skapar skräddarsydd musik som berör och engagerar deras publik i sociala medier samt i egna videor som beskriver det fortlöpande konstnärliga arbetet på teatern.",
-      audioSrc: "/audio/test.mp3"
+      audioSrc: "/audio/test.mp3",
+      credits: "",
     },
     {
       title: "Euro Fan Café/ReOrient",
       description: "Euro Fan Café: ljudbranding",
       image: "/media/projects/euro.png",
       details: "Jag gjorde en låt i tre olika längder och utföranden till Euro Fan Café Festival som gick av stapeln i Folkets Park i Malmö under Eurovisions-veckan 2024. Det här var den stora samlingspunkten för alla inhemska och tillresta fans under Eurovision-finalerna 2024 som hölls i Malmö. Dessutom fanns en kortversion med en fanfar som användes särskilt under olika lekar under festivalen.",
-      audioSrc: "/audio/urban.mp3"
+      audioSrc: "/audio/urban.mp3",
+      credits: "",
+    },
+    {
+      title: "Kungen i Gult, Bombina Bombast",
+      description: "Scenkonstföreställning",
+      image: "/media/projects/kg_01.png",
+      details: "För drygt 130 år sedan upptäcktes en av världslitteraturens märkligaste texter. En ljuvlig och vidrig text som har hemsökt oss under en stor del av våra liv: Teaterpjäsen Kungen i gult. Den här tillställningen är tillägnad den pjäsen. Det är berättelsen om den skräck och längtan som den gule konungen har väckt i oss och andra. En utställning, en ritual och en gemensam sorgesång.",
+      audioSrc: "/audio/nordic.mp3",
+      credits: "Musik och ljuddesign: Daniel & Matilda Tjäder",
     },
     {
       title: "Berlin Daniel",
       description: "Orchestral Composition (2022)",
       image: "/media/projects/berlin_daniel.jpg",
       details: "A symphonic piece that blends traditional Nordic folk music with contemporary orchestral arrangements. Performed by the Stockholm Philharmonic Orchestra.",
-      audioSrc: "/audio/nordic.mp3"
+      audioSrc: "/audio/nordic.mp3",
+      credits: "",
     },
     {
       title: "Digital Soundscapes",
       description: "Interactive Installation (2023)",
       image: "/media/projects/kg_01.png",
       details: "An interactive sound installation that responds to audience movement, creating unique sonic environments for each visitor.",
-      audioSrc: "/audio/digital.mp3"
+      audioSrc: "/audio/digital.mp3",
+      credits: "",
     },
     {
       title: "Ambient Reflections",
       description: "Album Release (2022)",
       image: "/media/projects/seaofsounds.jpg",
       details: "A collection of ambient compositions exploring the relationship between natural and electronic sounds.",
-      audioSrc: "/audio/ambient.mp3"
+      audioSrc: "/audio/ambient.mp3",
+      credits: "",
     },
    
   ]
